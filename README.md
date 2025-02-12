@@ -7,8 +7,13 @@ Spring MVCで作成する、RestAPIについてメモ
  - type3：REST APIにて基本的なPUT通信を行う方法
  - type4：REST APIにて基本的なDELETE通信を行う方法
  - type5：REST APIにて基本的なリソース検索を行う方法
+ - type6：URIを組み立てる方法（UriComponentsBuilderを使用してURIを作成するケース）
  
 ### ◆補足
+リクエストを実行するクライアントはChromeなどで拡張機能の【Talend API Tester】などを使用するとよい  
+参考：https://chromewebstore.google.com/detail/talend-api-tester-free-ed/aejoelaoggembcahagimdiliamlcdmfm?hl=ja&pli=1
+
+
 ## type1  
 MessageConverterのおかげで、JSONからオブジェクト、オブジェクトからJSONへと変換してくれる  
 MessageConverterの実装であるJackson2ObjectMapperFactoryBeanをDIコンテナに管理させることで  
