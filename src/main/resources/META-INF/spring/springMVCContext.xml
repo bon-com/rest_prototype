@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/mvc
+         http://www.springframework.org/schema/mvc/spring-mvc.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context.xsd
+       ">
+	<!-- 
+	JSONとJavaBeansを相互変換するためのコンバーター
+	@RequestBodyで受け取るリクエストのJavaBeans変換や、@ResponseBodyで返すレスポンスのJSON変換を行う
+	indentOutputをtrueに設定すると、出力されるJSONが整形される
+	 -->
+	<bean id="jacksonMessageConverter"
+		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+		<property name="objectMapper">
+			<bean
+				class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean">
+				<property name="indentOutput" value="true" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- アノテーションを有効にする -->
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<ref bean="jacksonMessageConverter" />
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+	<!-- コンポーネントを表すアノテーションがついたクラスをスキャンする -->
+	<context:component-scan
+		base-package="com.example.restprototype.web.controller" />
+
+</beans>
