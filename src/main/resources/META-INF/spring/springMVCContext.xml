@@ -34,6 +34,14 @@
 
 	<!-- コンポーネントを表すアノテーションがついたクラスをスキャンする -->
 	<context:component-scan
-		base-package="com.example.restprototype.web.controller" />
+		base-package="com.example.restprototype.web" />
+
+	<!-- メッセージ管理 -->
+	<!-- ResourceBundleMessageSourceを使用する場合 -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames"
+			value="ValidationMessages" />
+	</bean>
 
 </beans>

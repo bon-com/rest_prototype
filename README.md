@@ -9,6 +9,7 @@ Spring MVCで作成する、RestAPIについてメモ
  - type5：REST APIにて基本的なリソース検索を行う方法
  - type6：URIを組み立てる方法（UriComponentsBuilderを使用してURIを作成するケース）
  - type7：REST APIにて基本的な入力チェックを行う方法
+ - type8：REST APIにて入力チェックエラーを共通処理にてハンドリングする方法（カスタムエラーメッセージも利用）
  
 ### ◆補足
 リクエストを実行するクライアントはChromeなどで拡張機能の【Talend API Tester】などを使用するとよい  
@@ -61,3 +62,10 @@ MethodArgumentNotValidExceptionがスローされる
         }
     ]
 }
+
+## type8  
+@ControllerAdviceを使用して共通例外クラスを作成する  
+ResponseEntityExceptionHandlerを継承して必要なメソッドをオーバーライドすることで  
+REST APIの例外ハンドリングを補助してもらう  
+オーバーライド可能なさまざまな例外ハンドリングメソッドが用意されている  
+また、メッセージソースを使用することで、プロパティからカスタムエラーメッセージをも取得している
