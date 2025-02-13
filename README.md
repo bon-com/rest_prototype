@@ -8,6 +8,7 @@ Spring MVCで作成する、RestAPIについてメモ
  - type4：REST APIにて基本的なDELETE通信を行う方法
  - type5：REST APIにて基本的なリソース検索を行う方法
  - type6：URIを組み立てる方法（UriComponentsBuilderを使用してURIを作成するケース）
+ - type7：REST APIにて基本的な入力チェックを行う方法
  
 ### ◆補足
 リクエストを実行するクライアントはChromeなどで拡張機能の【Talend API Tester】などを使用するとよい  
@@ -36,3 +37,27 @@ PUT（更新）やDELETE（削除）では、リクエストは成功したが�
 クエリパラメータを受け取り、リソース検索する  
 GETリクエストのクエリパラメータをオブジェクトとして受け取る場合、  
 引数にオブジェクトを指定するだけでSpringが自動的にクエリパラメータをオブジェクトのフィールドにマッピングしてくれる
+
+## type7  
+Hibernate Validatorライブラリを導入してBean Validationを行う
+入力チェックエラー時、メソッドの@RequestBodyに対して@Validを使用している場合、  
+MethodArgumentNotValidExceptionがスローされる  
+コントローラー特有の例外として例外ハンドリングを行い、Bean Validationのデフォルトエラーメッセージを表示する  
+レスポンスイメージは以下
+
+{
+    "status": 400, // レスポンスステータス
+    "errorTitle": "入力エラー", // エラー概要タイトル
+    "errorMsg": "入力に誤りあり", // エラー概要メッセージ
+    "errorCode": "EXX0001", // エラーコードサンプル
+    "errors": [ // 個別入力チェック（Bean Validation）デフォルトエラーメッセージ
+        {
+            "target": "name",
+            "msg": "null は許可されていません"
+        },
+        {
+            "target": "hogeDate",
+            "msg": "null は許可されていません"
+        }
+    ]
+}

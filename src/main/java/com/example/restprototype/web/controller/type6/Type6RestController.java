@@ -34,7 +34,7 @@ public class Type6RestController {
 		var resource = new Resource(req.getId(), req.getName(), req.getHogeDate());
 		service.create(resource);
 		
-		// 「http://localhost:8080/rest_prototype/type6/XX」といったURIが生成される
+		// 「http://localhost:8080/rest_prototype/type1/XX」といったURIが生成される
 		URI resourceUri = builder
 				.path("/type1/{id}") // リソース取得のURIテンプレートつきパス 
 				.buildAndExpand(resource.getId()) // URIテンプレートにバインドさせる値
