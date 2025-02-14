@@ -1,6 +1,9 @@
-package com.example.restprototype.web.common;
+package com.example.restprototype.web.advice;
+
+import static com.example.restprototype.common.Constant.*;
 
 import java.util.Locale;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -9,9 +12,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.example.restprototype.web.resources.common.ErrorInfo;
 import com.example.restprototype.web.resources.common.ValidateErrorInfo;
 
 /**
@@ -38,9 +43,9 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 		// エラー内容を設定
 		var errorInfo = new ValidateErrorInfo();
 		errorInfo.setStatus(HttpStatus.BAD_REQUEST.value());
-		errorInfo.setErrorTitle("入力エラー");
-		errorInfo.setErrorMsg("入力に誤りあり");
-		errorInfo.setErrorCode("EXX0001");
+		errorInfo.setErrorTitle(ERR_TITLE_VALIDATION);
+		errorInfo.setErrorMsg(ERR_MSG_VALIDATION);
+		errorInfo.setErrorCode(ERR_CD_SAMPLE);
 		ex.getBindingResult()
 				.getFieldErrors()
 				.stream()
@@ -57,6 +62,22 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 		// エラー情報を返却
 		return super.handleExceptionInternal(ex, errorInfo, headers, status, request);
 	}
+	
+	/**
+	 * リソースなしエラー共通ハンドリング
+	 * @param ex
+	 * @return
+	 */
+    @ExceptionHandler(NoSuchElementException.class)
+    public ResponseEntity<ErrorInfo> handleNoSuchElementException(NoSuchElementException ex) {
+        var errorInfo = new ErrorInfo();
+        errorInfo.setStatus(HttpStatus.NOT_FOUND.value());
+        errorInfo.setErrorTitle(ERR_TITLE_ABOUT_RESOURCE);
+        errorInfo.setErrorMsg(ex.getMessage());
+        errorInfo.setErrorCode(ERR_CD_SAMPLE);
+
+        return new ResponseEntity<>(errorInfo, HttpStatus.NOT_FOUND);
+    }
 	
 
 }
