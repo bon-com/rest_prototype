@@ -1,4 +1,4 @@
-package com.example.restprototype.web.controller.type6;
+package com.example.restprototype.web.controller.type06;
 
 import java.net.URI;
 

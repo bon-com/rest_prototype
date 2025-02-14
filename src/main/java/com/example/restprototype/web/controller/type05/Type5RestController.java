@@ -1,4 +1,4 @@
-package com.example.restprototype.web.controller.type5;
+package com.example.restprototype.web.controller.type05;
 
 import java.util.List;
 
