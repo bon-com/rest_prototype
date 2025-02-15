@@ -24,5 +24,11 @@ public class Constant {
 	public static final String ERR_MSG_BAD_REQUEST = "リクエストが正しくない";
 	/** エラーステータス取得用 */
 	public static final String ERROR_STATUS_CODE = "javax.servlet.error.status_code";
+	/** コンテンツディスポジション */
+	public static final String CONTENT_DISPOSITION = "Content-Disposition";
+	/** コンテンツタイプ */
+	public static final String CONTENT_TYPE = "Content-Type";
+	/** XML */
+	public static final String CONTENT_TYPE_XML = "application/xml";
 	
 }

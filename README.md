@@ -12,6 +12,7 @@ Spring MVCで作成する、RestAPIについてメモ
  - type8：REST APIにて入力チェックエラーを共通処理にてハンドリングする方法（カスタムエラーメッセージも利用）
  - type9：REST APIにてアプリ例外を共通処理にてハンドリングする方法
  - type10：REST APIにてweb.xmlで例外ハンドリングする方法
+ - type11：REST APIにて基本的なXMLファイル情報を返却する方法
  
 ### ◆補足
 リクエストを実行するクライアントはChromeなどで拡張機能の【Talend API Tester】などを使用するとよい  
@@ -77,3 +78,10 @@ REST APIにてweb.xmlで例外ハンドリングする方法
 web.xmlにて<error-page>タグを利用して、例外発生時にハンドリング方法を記載できる  
 &lt;location&gt;タグにリダイレクト先を指定する  
 &lt;exception-type&gt;を指定して例外クラスを指定したり、&lt;error-code&gt;を指定してHTTPステータスも指定可能
+
+## type11  
+REST APIにてXML情報をバイナリで返却する  
+ResponseEntitiyのヘッダーに[Content-Disposition]を指定することで、  
+取得先のダウンロードファイル名等に使用可能  
+GETで返却するため、日本語等を指定すると文字化けてしまうため、URLエンコードして設定する  
+使用する側はURLでコードしてファイル名を取得する
