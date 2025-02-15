@@ -29,4 +29,9 @@
 		<param-value>classpath:/META-INF/spring/applicationContext.xml
 		</param-value>
 	</context-param>
+
+	<!-- デフォルトエラーハンドリング -->
+	<error-page>
+		<location>/error</location>
+	</error-page>
 </web-app>
