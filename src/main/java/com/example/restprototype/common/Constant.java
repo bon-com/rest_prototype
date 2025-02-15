@@ -30,5 +30,6 @@ public class Constant {
 	public static final String CONTENT_TYPE = "Content-Type";
 	/** XML */
 	public static final String CONTENT_TYPE_XML = "application/xml";
-	
+	/** PDF */
+	public static final String CONTENT_TYPE_PDF = "application/pdf";	
 }

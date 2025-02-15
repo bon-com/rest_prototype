@@ -13,6 +13,7 @@ Spring MVCで作成する、RestAPIについてメモ
  - type9：REST APIにてアプリ例外を共通処理にてハンドリングする方法
  - type10：REST APIにてweb.xmlで例外ハンドリングする方法
  - type11：REST APIにて基本的なXMLファイル情報を返却する方法
+ - type12：REST APIにて基本的なPDFファイル情報を返却する方法
  
 ### ◆補足
 リクエストを実行するクライアントはChromeなどで拡張機能の【Talend API Tester】などを使用するとよい  
