@@ -35,7 +35,7 @@ public class Type3RestController {
 	 */
 	@PutMapping(value = "type3/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void post(@PathVariable String id, @RequestBody ResourceReq req) {
+	public void put(@PathVariable String id, @RequestBody ResourceReq req) {
 		// リソース更新
 		var resource = new Resource(req.getId(), req.getName(), req.getHogeDate());
 		service.update(resource);

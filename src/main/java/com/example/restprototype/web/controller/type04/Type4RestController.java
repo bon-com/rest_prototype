@@ -31,7 +31,7 @@ public class Type4RestController {
 	 */
 	@DeleteMapping(value = "type4/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void post(@PathVariable String id) {
+	public void delete(@PathVariable String id) {
 		// リソース削除
 		service.delete(id);
 		
