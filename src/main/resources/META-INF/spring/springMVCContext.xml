@@ -14,6 +14,7 @@
 	JSONとJavaBeansを相互変換するためのコンバーター
 	@RequestBodyで受け取るリクエストのJavaBeans変換や、@ResponseBodyで返すレスポンスのJSON変換を行う
 	indentOutputをtrueに設定すると、出力されるJSONが整形される
+	尚、以下をBean定義しなくてもデフォルトで用意されている。インデントしたいときに指定したりする。
 	 -->
 	<bean id="jacksonMessageConverter"
 		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
