@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class Type12RestController {
-    @Autowired
-    private ResourceLoader resourceLoader;
-    
+	@Autowired
+	private ResourceLoader resourceLoader;
+
 	/**
 	 * PDF情報を返却する
 	 * @throws IOException 
@@ -36,15 +36,15 @@ public class Type12RestController {
 
 		// ファイル名
 		String encodedFileName = URLEncoder.encode("PDFサンプル", StandardCharsets.UTF_8.toString());
-		
-        // Content-Dispositionヘッダーにエンコードしたファイル名を設定
-		// コンテンツタイプにXMLを指定
-        var headers = new HttpHeaders();
-        headers.add(CONTENT_DISPOSITION, "attachment; filename=\"" + encodedFileName + "\"");
-        headers.add(CONTENT_TYPE, CONTENT_TYPE_PDF);
-        
-        return ResponseEntity.ok()
-                .headers(headers)
-                .body(content);
+
+		// Content-Dispositionヘッダーにエンコードしたファイル名を設定
+		// コンテンツタイプにPDFを指定
+		var headers = new HttpHeaders();
+		headers.add(CONTENT_DISPOSITION, "attachment; filename=\"" + encodedFileName + "\"");
+		headers.add(CONTENT_TYPE, CONTENT_TYPE_PDF);
+
+		return ResponseEntity.ok()
+				.headers(headers)
+				.body(content);
 	}
 }
