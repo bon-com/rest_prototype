@@ -22,7 +22,7 @@ public class Type1RestController {
 	/**
 	 * パスパラメータに対応したリソースを返却する
 	 * メソッドに@ResponseBodyを付与することで、HTTPレスポンスのbodyに直接書き込める
-	 * MappingJackson2HttpMessageConverterをDIコンテナに管理させているので
+	 * Spring-webmvcに含まれるSpring-webに含まれるメッセージコンバーターのおかげで
 	 * 戻り値のオブジェクトがJSON化される
 	 * @param id
 	 * @return

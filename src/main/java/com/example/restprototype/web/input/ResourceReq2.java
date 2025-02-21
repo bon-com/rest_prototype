@@ -25,7 +25,6 @@ public class ResourceReq2 {
 	@NotNull
 	private String name;
 	/** とある日付 */
-	@NotNull
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate hogeDate;
 }
