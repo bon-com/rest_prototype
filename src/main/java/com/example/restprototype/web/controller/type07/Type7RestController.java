@@ -49,7 +49,6 @@ public class Type7RestController {
 		URI resourceUri = builder
 				.path("/type1/{id}") 
 				.buildAndExpand(resource.getId())
-				.encode()
 				.toUri();
 		
 		return ResponseEntity.created(resourceUri).build();
@@ -62,7 +61,7 @@ public class Type7RestController {
 	 * @return
 	 */
 	@ExceptionHandler
-	public ResponseEntity<Object> handlerException(MethodArgumentNotValidException ex) {
+	public ResponseEntity<ValidateErrorInfo> handlerException(MethodArgumentNotValidException ex) {
 		// エラー内容を設定
 		var errorInfo = new ValidateErrorInfo();
 		errorInfo.setStatus(HttpStatus.BAD_REQUEST.value());

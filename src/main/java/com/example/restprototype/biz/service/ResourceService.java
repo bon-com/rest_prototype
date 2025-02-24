@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import com.example.restprototype.web.input.ResourceQuery;
+import com.example.restprototype.web.input.ResourceQuery2;
 import com.example.restprototype.web.resources.Resource;
 
 @Service
@@ -79,6 +80,23 @@ public class ResourceService {
 	 * @return
 	 */
 	public List<Resource> findByParam(ResourceQuery param) {
+		// 検索結果
+		List<Resource> resList = findAll().stream().filter(r -> {
+			boolean nameRes = param.getName() == null || r.getName().contains(param.getName());
+			boolean hogeDateRes = param.getHogeDate() == null || r.getHogeDate().equals(param.getHogeDate());
+			
+			return nameRes && hogeDateRes;
+		}).collect(Collectors.toList());
+		
+		return resList;
+	}
+	
+	/**
+	 * リソースの条件検索
+	 * @param param
+	 * @return
+	 */
+	public List<Resource> findByParam(ResourceQuery2 param) {
 		// 検索結果
 		List<Resource> resList = findAll().stream().filter(r -> {
 			boolean nameRes = param.getName() == null || r.getName().contains(param.getName());
