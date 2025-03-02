@@ -32,6 +32,7 @@ public class ApiErrorHandleController {
 			errorInfo.setErrorTitle(ERR_TITLE_BAD_REQUEST);
 			errorInfo.setErrorMsg(ERR_MSG_BAD_REQUEST);
 		} else {
+			// いったん5xx系のみ想定（5xx系かどうかはis5xxServerError()で判定）
 			errorInfo.setErrorTitle(ERR_TITLE_INTERNAL_SERVER);
 			errorInfo.setErrorMsg(ERR_MSG_INTERNAL_SERVER);
 		}

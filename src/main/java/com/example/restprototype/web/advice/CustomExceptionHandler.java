@@ -3,7 +3,6 @@ package com.example.restprototype.web.advice;
 import static com.example.restprototype.common.Constant.*;
 
 import java.util.Locale;
-import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.example.restprototype.web.resources.common.ErrorInfo;
@@ -97,15 +97,18 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
 	/**
 	 * リソースなしエラー共通ハンドリング
+	 * ResponseStatusExceptionをキャッチしてハンドリングする
+	 * ResponseStatusExceptionに設定したステータスをもとにハンドリングはできないため、
+	 * 一律この例外をキャッチしたうえで、ステータスコードを判定して分岐する必要はある
 	 * @param ex
 	 * @return
 	 */
-	@ExceptionHandler(NoSuchElementException.class)
-	public ResponseEntity<ErrorInfo> handleNoSuchElementException(NoSuchElementException ex) {
+	@ExceptionHandler(ResponseStatusException.class)
+	public ResponseEntity<ErrorInfo> handleResponseStatusException(ResponseStatusException ex) {
 		var errorInfo = new ErrorInfo();
-		errorInfo.setStatus(HttpStatus.NOT_FOUND.value());
+		errorInfo.setStatus(ex.getStatus().value());
 		errorInfo.setErrorTitle(ERR_TITLE_ABOUT_RESOURCE);
-		errorInfo.setErrorMsg(ex.getMessage());
+		errorInfo.setErrorMsg(ex.getReason());
 		errorInfo.setErrorCode(ERR_CD_SAMPLE);
 
 		return new ResponseEntity<>(errorInfo, HttpStatus.NOT_FOUND);
