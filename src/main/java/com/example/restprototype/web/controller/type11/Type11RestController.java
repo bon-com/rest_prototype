@@ -35,7 +35,7 @@ public class Type11RestController {
 		byte[] content = FileCopyUtils.copyToByteArray(xmlFile.getInputStream());
 
 		// ファイル名
-		String encodedFileName = URLEncoder.encode("登録情報", StandardCharsets.UTF_8.toString());
+		String encodedFileName = URLEncoder.encode("登録情報.xml", StandardCharsets.UTF_8.toString());
 		
         // Content-Dispositionヘッダーにエンコードしたファイル名を設定
 		// コンテンツタイプにXMLを指定
