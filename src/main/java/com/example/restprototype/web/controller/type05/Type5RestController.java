@@ -25,7 +25,7 @@ public class Type5RestController {
 	 * @return
 	 */
 	@ResponseBody
-	@GetMapping(value = "type5/")
+	@GetMapping(value = "type5")
 	public List<Resource> get(ResourceQuery queryParam) {
 		// 検索結果
 		List<Resource> resList = service.findByParam(queryParam);
